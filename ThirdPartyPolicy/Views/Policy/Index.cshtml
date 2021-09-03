@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ThirdPartyPolicy.Models.Policy>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Available Policies</h2>
+        </div>
+        <div class="col-6 text-right" aria-label="...">
+            <a asp-controller="Policy" asp-action="Create" class="btn btn-primary" type="button">
+                <i class="fas fa-plus"></i> &nbsp; Add New Policy
+            </a>
+        </div>
+        @*<div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default">left</button>
+            <button type="button" class="btn btn-default">middle</button>
+            <button type="button" class="btn btn-default">right</button>
+        </div>*@
+    </div>
+
+    <br /><br />
+
+    @if(Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Vehicle Body Type
+                    </th>
+                    <th>
+                        Premium
+                    </th>
+                    <th>Duration</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="50%">@obj.BodyType</td>
+                    <td width="30%">@obj.Premium</td>
+                    <td width="30%">@obj.Duration</td>
+                    <td class="text-center">
+                        <div class="w-100 btn-group" role="group" aria-label="...">
+                            <a asp-controller="Policy" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-primary mx-2" type="button">
+                                <i class="fas fa-edit"></i> 
+                            </a>
+                            <a asp-controller="Policy" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2" type="button">
+                                <i class="fas fa-trash-alt"></i> 
+                            </a>
+                            <a asp-controller="Policy" asp-route-Id="@obj.Id" asp-action="Purchase" class="btn btn-primary mx-2" type="button">
+                                Purchase
+                            </a>
+                            <div></div>
+
+                            @*<div class="btn-group" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default">left</button>
+                                <button type="button" class="btn btn-default">middle</button>
+                                <button type="button" class="btn btn-default">right</button>
+                            </div>*@
+
+                        </div>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    }
+
+    else
+    {
+        <p>No category exists.</p>
+    }
+    </div>
